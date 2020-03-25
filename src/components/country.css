@@ -1,0 +1,72 @@
+
+.country-container,
+.country-weather__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
+    padding: 1rem;
+    line-height: 1.7;
+    height: 17rem;
+    width: 13rem;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+.flag {
+    width: 8rem;
+    height: 5rem;
+    box-shadow: 0 1rem 1rem rgba(168, 157, 157, 0.4);
+}
+
+.country-name {
+    color: var(--secondary);
+    margin-top: .7rem;
+    font-size: 16px;
+
+}
+
+.country-weather__container {
+    width: 26rem;
+    height: 31rem;
+    margin-top: 4rem;
+    padding: 3rem 1rem;
+    /* background-color: rgb(38, 166, 221); */
+    border-radius: 3px;
+    color: white;
+    
+}
+
+.country-weather__container h4 {
+    font-size: 25px;
+    color: var(--secondary);
+    margin-top: 1rem;
+}
+
+.country-weather__container p {
+    font-size: 18px;
+}
+
+.weather-icon {
+    width: 19%;
+}
+
+
+@media screen and (max-width: 500px) {
+
+    .country-weather__container {
+        width: 20rem;
+        height: 28rem;
+        
+    }
+    .country-weather__container h4 {
+        font-size: 20px;
+        
+    }
+
+    .country-weather__container p {
+        font-size: 14px;
+    }
+}
