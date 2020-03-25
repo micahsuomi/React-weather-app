@@ -37,7 +37,11 @@ class App extends Component {
       let {country} = data.sys
       let {temp, feels_like, temp_min, temp_max, pressure, humidity} = data.main;
       console.log(id, name, country)
-      let subArr = [];
+      let k = -273.15
+      temp = Math.ceil(temp + k);
+      feels_like = Math.ceil(feels_like + k);
+      temp_min = Math.ceil(temp_min + k);
+      temp_max = Math.ceil(temp_max + k);
 
       let weather = data.weather;
       let weatherDescription = '';
@@ -115,9 +119,12 @@ class App extends Component {
           let {speed, deg} = data.wind;
           let {country} = data.sys
           let {temp, feels_like, temp_min, temp_max, pressure, humidity} = data.main;
-          console.log(id, name, country)
-          let subArr = [];
-    
+          let k = -273.15
+          temp = Math.ceil(temp + k);
+          feels_like = Math.ceil(feels_like + k);
+          temp_min = Math.ceil(temp_min + k);
+          temp_max = Math.ceil(temp_max + k);
+            
           let weather = data.weather;
           let weatherDescription = '';
       for(const w of weather) {
@@ -162,10 +169,10 @@ class App extends Component {
                country={country.country}
                description={country.weatherDescription}
                temperature={country.temp}
+               feelsLike={country.feels_like}
                tempMin={country.temp_min}
                tempMax={country.temp_max}
                humidity={country.humidity}
-               feelsLike={country.feels_like}
                windSpeed={country.speed}
                windDeg={country.deg}
 
@@ -173,12 +180,28 @@ class App extends Component {
 
               />
     ))
+
+    //display data in the header
+      let temperature = '';
+      let feels = '';
+      let description = '';
+      for(const weather of this.state.weather) {
+        let {temp, feels_like, weatherDescription} = weather;
+        temperature = temperature + temp;
+        feels = feels + feels_like;
+        description = description + weatherDescription;
+      }
+
       return (
         <div className="wrapper">
            <div className="container">
               <div className="header">
                   <div className="header-top">
-                  <h1 className="title">Weather App</h1>
+                  <h2 className="title">Weather App</h2>
+                  <h4 className="header-city">{this.state.query}</h4>
+                  <p className="header-description">{description}</p>
+                  <h3 className="header-temperature">{temperature} C</h3>
+                  <p className="header-feelsLike">Feels Like{feels} C</p>
               </div>
                   <form className="form" onSubmit={this.handleSubmit}>     
                   <input className="search-input" 
@@ -192,8 +215,7 @@ class App extends Component {
               </form>
   
               </div>
-        
-        
+       
          <div className="countries-weather__wrapper">{weatherCountry}</div>
               
           </div>
